@@ -18,12 +18,17 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-app.get('/', (req,res) => {
-    res.render('index')
+app.get('/', async (req,res) => {
+    const groceryItems = await db.collection('Grocery-Items').find().toArray()
+    res.render('index', { items: groceryItems })
 })
 
 app.post('/addItem', (req,res) => {
-
+    db.collection('Grocery-Items').insertOne({item: req.body.groceryItem, obtained: false})
+        .then(result => {
+            console.log('item added')
+            res.redirect('/')
+        })
 })
 
 app.listen(PORT)

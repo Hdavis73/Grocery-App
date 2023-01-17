@@ -16,11 +16,12 @@
         <% }else{ %>
         <span><%= items[i].item %></span>
         <% } %>
+        <span class="delete-item">remove</span>
       </li>
       <% } %>
     </ul>
-    <form action="">
-      <input type="text" placeholder="Add Item..." />
+    <form action="/addItem" method="POST">
+      <input type="text" placeholder="Add Item..." name="groceryItem"/>
       <button>Add</button>
     </form>
   </body>
