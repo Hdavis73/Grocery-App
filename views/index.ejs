@@ -8,14 +8,20 @@
   </head>
   <body>
     <h1>Grocery List</h1>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+    <ul class="groceryItems">
+      <% for(let i = 0; i < items.length; i++) {%>
+      <li class="item">
+        <%if(items[i].obtained === true) {%>
+        <span class="obtained"><%= items[i].item %></span>
+        <% }else{ %>
+        <span><%= items[i].item %></span>
+        <% } %>
+      </li>
+      <% } %>
     </ul>
     <form action="">
-        <input type="text" placeholder="Add Item...">
-        <button>Add</button>
+      <input type="text" placeholder="Add Item..." />
+      <button>Add</button>
     </form>
   </body>
 </html>
