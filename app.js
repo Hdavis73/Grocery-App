@@ -31,4 +31,19 @@ app.post('/addItem', (req,res) => {
         })
 })
 
+app.put('/markObtained', (req,res) => {
+    db.collection('Grocery-Items').updateOne({ item: req.body.itemFromJs }, {
+        $set: {
+            obtained: true
+        }
+    }, {
+        sort: {_id: -1},
+        upsert: false
+    })
+    .then(result => {
+        console.log('complete')
+        res.json('complete')
+    })
+})
+
 app.listen(PORT)

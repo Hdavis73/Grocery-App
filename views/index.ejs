@@ -4,25 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Normalize-reset/reset.css">
+    <link rel="stylesheet" href="Normalize-reset/normalize.css">
+    <link rel="stylesheet" href="styles.css" />
     <title>Grocery List App</title>
   </head>
   <body>
-    <h1>Grocery List</h1>
-    <ul class="groceryItems">
-      <% for(let i = 0; i < items.length; i++) {%>
-      <li class="item">
-        <%if(items[i].obtained === true) {%>
-        <span class="obtained"><%= items[i].item %></span>
-        <% }else{ %>
-        <span><%= items[i].item %></span>
+    <section class="item-list">
+      <h1>Grocery List</h1>
+      <form action="/addItem" method="POST">
+        <input type="text" placeholder="Add Item..." name="groceryItem" />
+        <button>Add</button>
+      </form>
+      <ul class="groceryItems">
+        <% for(let i = 0; i < items.length; i++) {%>
+        <li class="item">
+          <%if(items[i].obtained === true) {%>
+          <span class="obtained"><%= items[i].item %></span>
+          <% }else{ %>
+          <span><%= items[i].item %></span>
+          <% } %>
+          <span class="delete-item">remove</span>
+        </li>
         <% } %>
-        <span class="delete-item">remove</span>
-      </li>
-      <% } %>
-    </ul>
-    <form action="/addItem" method="POST">
-      <input type="text" placeholder="Add Item..." name="groceryItem"/>
-      <button>Add</button>
-    </form>
+      </ul>
+    </section>
   </body>
 </html>
