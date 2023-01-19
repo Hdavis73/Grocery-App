@@ -53,3 +53,8 @@ body {
     font-size: .9rem;
     padding: 2px;
 }
+
+.item-list .obtained {
+    color: rgba(0, 0, 0, 0.345);
+    text-decoration: line-through;
+}

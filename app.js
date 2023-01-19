@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
 
 app.post('/addItem', (req, res) => {
   db.collection('Grocery-Items')
-    .insertOne({ item: req.body.groceryItem, obtained: false })
+    .insertOne({ item: req.body.groceryItem.toLowerCase(), obtained: false })
     .then((result) => {
       console.log('item added');
       res.redirect('/');
@@ -47,6 +47,26 @@ app.put('/markObtained', (req, res) => {
     )
     .then((result) => {
       console.log('complete');
+      res.json('complete');
+    });
+});
+
+app.put('/markUnobtained', (req, res) => {
+    db.collection('Grocery-Items')
+    .updateOne(
+      { item: req.body.itemFromJs.toLowerCase() },
+      {
+        $set: {
+          obtained: false,
+        },
+      },
+      {
+        sort: { _id: -1 },
+        upsert: false,
+      }
+    )
+    .then((result) => {
+      console.log('uncomplete');
       res.json('complete');
     });
 });
