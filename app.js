@@ -34,7 +34,7 @@ app.post('/addItem', (req, res) => {
 app.put('/markObtained', (req, res) => {
   db.collection('Grocery-Items')
     .updateOne(
-      { item: req.body.itemFromJs },
+      { item: req.body.itemFromJs.toLowerCase() },
       {
         $set: {
           obtained: true,
